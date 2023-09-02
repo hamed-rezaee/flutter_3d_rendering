@@ -21,6 +21,10 @@ class RenderPainter extends CustomPainter {
 
     canvas.translate(size.width / 2, size.height / 2);
 
+    _drawEdges(canvas, paint, _drawCube(canvas, paint));
+  }
+
+  List<Vector> _drawCube(Canvas canvas, Paint paint) {
     List<Vector> projectedPoints = [];
 
     for (int i = 0; i < points.length; i++) {
@@ -40,8 +44,12 @@ class RenderPainter extends CustomPainter {
       _connect(canvas, i, i + 4, projectedPoints, paint);
     }
 
-    for (int i = 0; i < projectedPoints.length; i++) {
-      canvas.drawCircle(projectedPoints[i].toOffset(), poinSize, paint);
+    return projectedPoints;
+  }
+
+  void _drawEdges(Canvas canvas, Paint paint, List<Vector> points) {
+    for (int i = 0; i < points.length; i++) {
+      canvas.drawCircle(points[i].toOffset(), poinSize, paint);
     }
   }
 
