@@ -11,7 +11,7 @@ class RenderPainter extends CustomPainter {
   final double angle;
   final List<Vector> points;
 
-  final double poinSize = 4;
+  final double poinSize = 6;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -32,8 +32,10 @@ class RenderPainter extends CustomPainter {
       rotatedPoint = multiplyMatrix(getRotatioX(angle), rotatedPoint);
       rotatedPoint = multiplyMatrix(getRotatioZ(angle), rotatedPoint);
 
+      double z = 1 / (4 - rotatedPoint.z);
+
       final Vector projectedPoint =
-          multiplyMatrix(getProjectionMatrix(), rotatedPoint) * 150;
+          multiplyMatrix(getProjectionMatrix(z), rotatedPoint) * 150;
 
       projectedPoints.add(projectedPoint);
     }

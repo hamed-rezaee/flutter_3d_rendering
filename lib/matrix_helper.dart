@@ -20,9 +20,9 @@ Vector multiplyMatrix(List<List<double>> matrix, Vector vector) {
   return Vector(result[0], result[1], result[2]);
 }
 
-List<List<double>> getProjectionMatrix() => [
-      [1, 0, 0],
-      [0, 1, 0],
+List<List<double>> getProjectionMatrix([double z = 1]) => [
+      [z, 0, 0],
+      [0, z, 0],
       [0, 0, 0]
     ];
 
