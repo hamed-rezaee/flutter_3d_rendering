@@ -11,7 +11,7 @@ class Vector {
 
   List<double> toList() => [x, y, z];
 
-
+  operator *(double scalar) => Vector(x * scalar, y * scalar, z * scalar);
 
   @override
   String toString() => 'Vector($x, $y, $z)';

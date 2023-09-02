@@ -17,10 +17,14 @@ class _MainAppState extends State<MainApp> {
   double angle = 0;
 
   final List<Vector> points = [
-    Vector(-50, -50, 0),
-    Vector(50, -50, 0),
-    Vector(50, 50, 0),
-    Vector(-50, 50, 0),
+    Vector(1, 1, 1),
+    Vector(-1, 1, 1),
+    Vector(-1, -1, 1),
+    Vector(1, -1, 1),
+    Vector(1, 1, -1),
+    Vector(-1, 1, -1),
+    Vector(-1, -1, -1),
+    Vector(1, -1, -1),
   ];
 
   @override
@@ -29,7 +33,7 @@ class _MainAppState extends State<MainApp> {
 
     Timer.periodic(
       const Duration(milliseconds: 16),
-      (Timer timer) => setState(() => angle += 0.03),
+      (Timer timer) => setState(() => angle += 0.02),
     );
   }
 

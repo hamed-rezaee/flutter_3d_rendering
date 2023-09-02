@@ -11,7 +11,7 @@ class RenderPainter extends CustomPainter {
   final double angle;
   final List<Vector> points;
 
-  final double poinSize = 8;
+  final double poinSize = 4;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -21,14 +21,42 @@ class RenderPainter extends CustomPainter {
 
     canvas.translate(size.width / 2, size.height / 2);
 
-    for (final Vector point in points) {
-      final Vector rotatedPoint = multiplyMatrix(getRotatioX(angle), point);
-      final Vector projected2dPoint =
-          multiplyMatrix(getProjectionMatrix(), rotatedPoint);
+    List<Vector> projectedPoints = [];
 
-      canvas.drawCircle(projected2dPoint.toOffset(), poinSize, paint);
+    for (int i = 0; i < points.length; i++) {
+      Vector rotatedPoint = multiplyMatrix(getRotatioY(angle), points[i]);
+      rotatedPoint = multiplyMatrix(getRotatioX(angle), rotatedPoint);
+      rotatedPoint = multiplyMatrix(getRotatioZ(angle), rotatedPoint);
+
+      final Vector projectedPoint =
+          multiplyMatrix(getProjectionMatrix(), rotatedPoint) * 150;
+
+      projectedPoints.add(projectedPoint);
+    }
+
+    for (int i = 0; i < 4; i++) {
+      _connect(canvas, i, (i + 1) % 4, projectedPoints, paint);
+      _connect(canvas, i + 4, ((i + 1) % 4) + 4, projectedPoints, paint);
+      _connect(canvas, i, i + 4, projectedPoints, paint);
+    }
+
+    for (int i = 0; i < projectedPoints.length; i++) {
+      canvas.drawCircle(projectedPoints[i].toOffset(), poinSize, paint);
     }
   }
+
+  void _connect(
+    Canvas canvas,
+    int i,
+    int j,
+    List<Vector> points,
+    Paint paint,
+  ) =>
+      canvas.drawLine(
+        points[i].toOffset(),
+        points[j].toOffset(),
+        paint,
+      );
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;
