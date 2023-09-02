@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_rendering/render_painter.dart';
 import 'package:flutter_3d_rendering/vector.dart';
@@ -21,10 +23,15 @@ class _MainAppState extends State<MainApp> {
     Vector(-50, 50, 0),
   ];
 
-  List<List<double>> projectionMatrix = [
-    [1, 0, 0],
-    [0, 1, 0],
-  ];
+  @override
+  void initState() {
+    super.initState();
+
+    Timer.periodic(
+      const Duration(milliseconds: 16),
+      (Timer timer) => setState(() => angle += 0.03),
+    );
+  }
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -36,7 +43,6 @@ class _MainAppState extends State<MainApp> {
               painter: RenderPainter(
                 angle: angle,
                 points: points,
-                projectionMatrix: projectionMatrix,
               ),
             ),
           ),

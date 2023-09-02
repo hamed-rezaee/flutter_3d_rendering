@@ -6,12 +6,10 @@ class RenderPainter extends CustomPainter {
   RenderPainter({
     required this.angle,
     required this.points,
-    required this.projectionMatrix,
   });
 
   final double angle;
   final List<Vector> points;
-  final List<List<double>> projectionMatrix;
 
   final double poinSize = 8;
 
@@ -24,12 +22,14 @@ class RenderPainter extends CustomPainter {
     canvas.translate(size.width / 2, size.height / 2);
 
     for (final Vector point in points) {
-      Vector projected2dPoint = multiplyMatrix(projectionMatrix, point);
+      final Vector rotatedPoint = multiplyMatrix(getRotatioX(angle), point);
+      final Vector projected2dPoint =
+          multiplyMatrix(getProjectionMatrix(), rotatedPoint);
 
       canvas.drawCircle(projected2dPoint.toOffset(), poinSize, paint);
     }
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

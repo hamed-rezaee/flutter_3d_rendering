@@ -10,4 +10,9 @@ class Vector {
   Offset toOffset() => Offset(x, y);
 
   List<double> toList() => [x, y, z];
+
+
+
+  @override
+  String toString() => 'Vector($x, $y, $z)';
 }
