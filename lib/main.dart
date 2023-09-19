@@ -16,7 +16,7 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   double angle = 0;
 
-  final List<Vector> points = [
+  final List<Vector> points = <Vector>[
     Vector(1, 1, 1),
     Vector(-1, 1, 1),
     Vector(-1, -1, 1),

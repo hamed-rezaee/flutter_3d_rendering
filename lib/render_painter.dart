@@ -21,21 +21,21 @@ class RenderPainter extends CustomPainter {
 
     canvas.translate(size.width / 2, size.height / 2);
 
-    _drawEdges(canvas, paint, _drawCube(canvas, paint));
+    _drawCube(canvas, paint);
   }
 
-  List<Vector> _drawCube(Canvas canvas, Paint paint) {
-    List<Vector> projectedPoints = [];
+  void _drawCube(Canvas canvas, Paint paint) {
+    final List<Vector> projectedPoints = <Vector>[];
 
     for (int i = 0; i < points.length; i++) {
       Vector rotatedPoint = multiplyMatrix(getRotatioY(angle), points[i]);
       rotatedPoint = multiplyMatrix(getRotatioX(angle), rotatedPoint);
       rotatedPoint = multiplyMatrix(getRotatioZ(angle), rotatedPoint);
 
-      double z = 1 / (4 - rotatedPoint.z);
+      final double z = 1 / (4 - rotatedPoint.z);
 
       final Vector projectedPoint =
-          multiplyMatrix(getProjectionMatrix(z), rotatedPoint) * 150;
+          multiplyMatrix(getProjectionMatrix(z), rotatedPoint) * 300;
 
       projectedPoints.add(projectedPoint);
     }
@@ -44,14 +44,6 @@ class RenderPainter extends CustomPainter {
       _connect(canvas, i, (i + 1) % 4, projectedPoints, paint);
       _connect(canvas, i + 4, ((i + 1) % 4) + 4, projectedPoints, paint);
       _connect(canvas, i, i + 4, projectedPoints, paint);
-    }
-
-    return projectedPoints;
-  }
-
-  void _drawEdges(Canvas canvas, Paint paint, List<Vector> points) {
-    for (int i = 0; i < points.length; i++) {
-      canvas.drawCircle(points[i].toOffset(), poinSize, paint);
     }
   }
 
@@ -62,11 +54,7 @@ class RenderPainter extends CustomPainter {
     List<Vector> points,
     Paint paint,
   ) =>
-      canvas.drawLine(
-        points[i].toOffset(),
-        points[j].toOffset(),
-        paint,
-      );
+      canvas.drawLine(points[i].toOffset(), points[j].toOffset(), paint);
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => true;

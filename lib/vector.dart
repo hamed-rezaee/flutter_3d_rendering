@@ -9,9 +9,10 @@ class Vector {
 
   Offset toOffset() => Offset(x, y);
 
-  List<double> toList() => [x, y, z];
+  List<double> toList() => <double>[x, y, z];
 
-  operator *(double scalar) => Vector(x * scalar, y * scalar, z * scalar);
+  Vector operator *(double scalar) =>
+      Vector(x * scalar, y * scalar, z * scalar);
 
   @override
   String toString() => 'Vector($x, $y, $z)';
