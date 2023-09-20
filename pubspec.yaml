@@ -1,10 +1,11 @@
 name: flutter_3d_rendering
-description: A new Flutter project.
-publish_to: 'none'
+description: A sample Flutter project to demonstrate 3D rendering.
+
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: ">=3.0.3 <4.0.0"
 
 dependencies:
   flutter:
