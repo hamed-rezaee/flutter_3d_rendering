@@ -6,8 +6,10 @@ import 'package:flutter_3d_rendering/shape_renderer/base_renderer.dart';
 import 'package:flutter_3d_rendering/vector.dart';
 
 class DonutRenderer extends BaseRenderer {
-  DonutRenderer(
-    super.angle, {
+  DonutRenderer({
+    super.angleX,
+    super.angleY,
+    super.angleZ,
     this.zoom = 300,
     this.majorRadius = 1,
     this.minorRadius = 0.5,
@@ -41,9 +43,9 @@ class DonutRenderer extends BaseRenderer {
           _getZComponent(minorAngle),
         );
 
-        Vector rotatedPoint = multiplyMatrix(getRotatioY(angle), point);
-        rotatedPoint = multiplyMatrix(getRotatioX(angle), rotatedPoint);
-        rotatedPoint = multiplyMatrix(getRotatioZ(angle), rotatedPoint);
+        Vector rotatedPoint = multiplyMatrix(getRotatioX(angleX), point);
+        rotatedPoint = multiplyMatrix(getRotatioY(angleY), rotatedPoint);
+        rotatedPoint = multiplyMatrix(getRotatioZ(angleZ), rotatedPoint);
 
         projectedPoints.add(_getProjectedPoint(rotatedPoint) * zoom);
       }

@@ -7,7 +7,7 @@ import 'package:flutter_3d_rendering/shape_renderer/base_renderer.dart';
 import 'package:flutter_3d_rendering/vector.dart';
 
 class CubeRenderer extends BaseRenderer {
-  CubeRenderer(super.angle);
+  CubeRenderer({super.angleX, super.angleY, super.angleZ});
 
   @override
   void render(Canvas canvas, Paint paint) {
@@ -24,9 +24,9 @@ class CubeRenderer extends BaseRenderer {
     ];
 
     for (int i = 0; i < points.length; i++) {
-      Vector rotatedPoint = multiplyMatrix(getRotatioY(angle), points[i]);
-      rotatedPoint = multiplyMatrix(getRotatioX(angle), rotatedPoint);
-      rotatedPoint = multiplyMatrix(getRotatioZ(angle), rotatedPoint);
+      Vector rotatedPoint = multiplyMatrix(getRotatioX(angleX), points[i]);
+      rotatedPoint = multiplyMatrix(getRotatioY(angleY), rotatedPoint);
+      rotatedPoint = multiplyMatrix(getRotatioZ(angleZ), rotatedPoint);
 
       final double z = 1 / (4 - rotatedPoint.z);
 
