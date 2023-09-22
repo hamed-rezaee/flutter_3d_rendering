@@ -19,10 +19,14 @@ import 'package:flutter_3d_rendering/donut_renderer.dart';
 import 'package:flutter_3d_rendering/render_painter.dart';
 ```
 
-Create a `BaseRenderer` with an angle to control rotation:
+Create a `BaseRenderer` with an angleX, angleY, angleZ to control rotation:
 
 ```dart
-final renderer = DonutRenderer(angle);
+final renderer = DonutRenderer(
+  angleX: angleX,
+  angleY: angleY,
+  angleZ: angleZ,
+);
 ```
 
 In your widget's `build` method, use the `CustomPaint` widget to display the object:
@@ -39,7 +43,9 @@ To continuously rotate the object, you can use a timer or any other mechanism to
 ```dart
 Timer.periodic(const Duration(milliseconds: 16), (timer) {
   setState(() {
-    angle += 0.01;
+    angleX += 0.01;
+    angleY += 0.01;
+    angleZ += 0.01;
   });
 });
 ```
