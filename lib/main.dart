@@ -31,8 +31,8 @@ class _MainAppState extends State<MainApp> {
             child: Column(
               children: <Widget>[
                 _buildRendererPainter(),
-                _buildShowPoints(),
                 _buildShowLines(),
+                _buildShowPoints(),
                 _buildAngleXSlider(),
                 _buildAngleYSlider(),
                 _buildAngleZSlider(),
@@ -59,24 +59,21 @@ class _MainAppState extends State<MainApp> {
         ),
       );
 
-  Widget _buildShowLines() => CheckboxListTile(
-        value: !showPoints,
-        title: const Text('Show Lines'),
-        onChanged: (_) => setState(() => showPoints = !showPoints),
-      );
-
   Widget _buildShowPoints() => CheckboxListTile(
         value: showPoints,
         title: const Text('Show Points'),
         onChanged: (_) => setState(() => showPoints = !showPoints),
       );
 
+  Widget _buildShowLines() => CheckboxListTile(
+        value: !showPoints,
+        title: const Text('Show Lines'),
+        onChanged: (_) => setState(() => showPoints = !showPoints),
+      );
+
   Widget _buildAngleXSlider() => Column(
         children: <Widget>[
-          Text(
-            'Angle X: ${angleX.toStringAsFixed(2)}',
-            style: const TextStyle(color: Colors.white),
-          ),
+          Text('Angle X: ${angleX.toStringAsFixed(2)}'),
           Slider(
             value: angleX,
             max: pi,
@@ -87,10 +84,7 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildAngleYSlider() => Column(
         children: <Widget>[
-          Text(
-            'Angle Y: ${angleY.toStringAsFixed(2)}',
-            style: const TextStyle(color: Colors.white),
-          ),
+          Text('Angle Y: ${angleY.toStringAsFixed(2)}'),
           Slider(
             value: angleY,
             max: pi,
@@ -101,10 +95,7 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildAngleZSlider() => Column(
         children: <Widget>[
-          Text(
-            'Angle Z: ${angleZ.toStringAsFixed(2)}',
-            style: const TextStyle(color: Colors.white),
-          ),
+          Text('Angle Z: ${angleZ.toStringAsFixed(2)}'),
           Slider(
             value: angleZ,
             max: pi,
@@ -115,10 +106,7 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildMajorSegmentsCountSlider() => Column(
         children: <Widget>[
-          Text(
-            'Major Segments Count: $majorSegmentsCount',
-            style: const TextStyle(color: Colors.white),
-          ),
+          Text('Major Segments Count: $majorSegmentsCount'),
           Slider(
             value: majorSegmentsCount.toDouble(),
             max: 128,
@@ -130,10 +118,7 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildMinorSegmentsCountSlider() => Column(
         children: <Widget>[
-          Text(
-            'Minor Segments Count: $minorSegmentsCounts',
-            style: const TextStyle(color: Colors.white),
-          ),
+          Text('Minor Segments Count: $minorSegmentsCounts'),
           Slider(
             value: minorSegmentsCounts.toDouble(),
             max: 64,
