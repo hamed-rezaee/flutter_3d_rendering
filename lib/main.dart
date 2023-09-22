@@ -20,16 +20,19 @@ class _MainAppState extends State<MainApp> {
   double angleZ = 0;
   int majorSegmentsCount = 64;
   int minorSegmentsCounts = 32;
+  bool showPoints = false;
 
   @override
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 _buildRendererPainter(),
+                _buildShowPoints(),
+                _buildShowLines(),
                 _buildAngleXSlider(),
                 _buildAngleYSlider(),
                 _buildAngleZSlider(),
@@ -50,8 +53,22 @@ class _MainAppState extends State<MainApp> {
             angleZ: angleZ,
             majorSegmentsCount: majorSegmentsCount,
             minorSegmentsCounts: minorSegmentsCounts,
+            showPoints: showPoints,
+            showLines: !showPoints,
           ),
         ),
+      );
+
+  Widget _buildShowLines() => CheckboxListTile(
+        value: !showPoints,
+        title: const Text('Show Lines'),
+        onChanged: (_) => setState(() => showPoints = !showPoints),
+      );
+
+  Widget _buildShowPoints() => CheckboxListTile(
+        value: showPoints,
+        title: const Text('Show Points'),
+        onChanged: (_) => setState(() => showPoints = !showPoints),
       );
 
   Widget _buildAngleXSlider() => Column(
