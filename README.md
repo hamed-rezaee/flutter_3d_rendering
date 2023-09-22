@@ -6,6 +6,8 @@
 
 ![Donut Point Renderer](donut_renderer_point.gif)
 
+![Render Painter](renderer.gif)
+
 This Flutter application provides a simple example of 3D rendering using custom painting. It renders a rotating 3D object on the screen.
 
 Inspired by Coding Train's [Coding Challenge #112: 3D Rendering with Rotation and Projection](https://www.youtube.com/watch?v=p4Iz0XJY-Qk) by Daniel Shiffman.
