@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_3d_rendering/helpers.dart';
 import 'package:flutter_3d_rendering/render_painter.dart';
 import 'package:flutter_3d_rendering/shape_renderer/donut_renderer.dart';
 
@@ -61,22 +62,23 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildShowPoints() => CheckboxListTile(
         value: showPoints,
-        title: const Text('Show Points'),
+        title: const Text('Show Vertices'),
         onChanged: (_) => setState(() => showPoints = !showPoints),
       );
 
   Widget _buildShowLines() => CheckboxListTile(
         value: !showPoints,
-        title: const Text('Show Lines'),
+        title: const Text('Show Edges'),
         onChanged: (_) => setState(() => showPoints = !showPoints),
       );
 
   Widget _buildAngleXSlider() => Column(
         children: <Widget>[
-          Text('Angle X: ${angleX.toStringAsFixed(2)}'),
+          Text('Angle X: ${radiansToDegrees(angleX).toStringAsFixed(0)}'),
           Slider(
+            divisions: 360,
             value: angleX,
-            max: pi,
+            max: 2 * pi,
             onChanged: (double value) => setState(() => angleX = value),
           ),
         ],
@@ -84,10 +86,11 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildAngleYSlider() => Column(
         children: <Widget>[
-          Text('Angle Y: ${angleY.toStringAsFixed(2)}'),
+          Text('Angle Y: ${radiansToDegrees(angleY).toStringAsFixed(0)}'),
           Slider(
+            divisions: 360,
             value: angleY,
-            max: pi,
+            max: 2 * pi,
             onChanged: (double value) => setState(() => angleY = value),
           ),
         ],
@@ -95,10 +98,11 @@ class _MainAppState extends State<MainApp> {
 
   Widget _buildAngleZSlider() => Column(
         children: <Widget>[
-          Text('Angle Z: ${angleZ.toStringAsFixed(2)}'),
+          Text('Angle Z: ${radiansToDegrees(angleZ).toStringAsFixed(0)}'),
           Slider(
+            divisions: 360,
             value: angleZ,
-            max: pi,
+            max: 2 * pi,
             onChanged: (double value) => setState(() => angleZ = value),
           ),
         ],
